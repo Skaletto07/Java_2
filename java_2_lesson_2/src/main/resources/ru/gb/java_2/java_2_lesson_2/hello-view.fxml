@@ -12,7 +12,7 @@
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
-    <TextArea fx:id="messageArea" VBox.vgrow="ALWAYS"/>
+    <TextArea fx:id="messageArea" VBox.vgrow="ALWAYS" editable="false"/>
     <HBox spacing="20">
         <TextField fx:id="messageField" HBox.hgrow="ALWAYS"/>
         <Button text="Send" onAction="#pushButtonToSend" defaultButton="true"/>
