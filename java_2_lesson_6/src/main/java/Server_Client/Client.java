@@ -41,8 +41,11 @@ public class Client {
                         final String message = in.readUTF();
                         if ("/end".equalsIgnoreCase(message)) {
                             break;
-                    }
+                        }
                         System.out.println("Сообщение от сервера: " + message);
+
+
+
 
                 }
             } catch (IOException e) {

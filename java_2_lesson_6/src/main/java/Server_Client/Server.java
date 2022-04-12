@@ -16,19 +16,31 @@ public class Server {
             final DataInputStream in = new DataInputStream(socket.getInputStream());
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
             while (true) {
-                final String message = in.readUTF();
-                System.out.println("Сообщение от клиента: " + message);
-                final String msg = bufferedReader.readLine();
-                if ("/end".equalsIgnoreCase(message)) {
-                    out.writeUTF("/end");
-                    break;
-                }
-                out.writeUTF(msg);
+                new Thread(() -> {
+                    try {
+                        final String msg = bufferedReader.readLine();
+                        out.writeUTF(msg);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }).start();
+
+
+                    final String message = in.readUTF();
+                    System.out.println("Сообщение от клиента: " + message);
+
+                    if ("/end".equalsIgnoreCase(message)) {
+                        out.writeUTF("/end");
+                        break;
+                    }
+
+
+
+
             }
         } catch (IOException e) {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
-        System.out.println("Сервер остановлен!");
     }
 }
